@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>登録画面</title>
+	<style>
+		table{
+			margin: 180px auto 20px;
+		}
+	</style>
+</head>
+<body>
+
+	<form th:action="@{'/insert'}" th:method="post" th:object="${bookForm}">
+
+		<table>
+			<tr>
+				<th>タイトル</th>
+				<td>
+					<input type="text" th:field="*{title}">
+					<span style="color:red;" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span>
+				</td>
+			</tr>
+			<tr>
+				<th>作者</th>
+				<td>
+					<select th:field="*{author}">
+						<option th:each="key : ${authors.keySet()}" th:value=${key} th:text="${authors.get(key)}"></option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th>出版日</th>
+				<td>
+					<input type="text" placeholder="yyyy/MM/dd" th:field="*{publishDate}">
+					<span style="color:red;" th:if="${#fields.hasErrors('publishDate')}" th:errors="*{publishDate}"></span>
+				</td>
+			</tr>
+			<tr>
+				<th>価格</th>
+				<td>
+					<input type="text" th:field="*{price}">
+					<span style="color:red;" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" style="text-align: center;">
+					<input type="submit">
+				</td>
+			</tr>
+		</table>
+
+
+	</form>
+
+
+</body>
+</html>

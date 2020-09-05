@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>すべての本</title>
+</head>
+<body>
+	<h1>JdbcTemplate.query() + BeanPropertyRowMapper</h1>
+
+	<table border="1">
+		<tr>
+			<th>ID</th>
+			<th>タイトル</th>
+			<th>著者</th>
+			<th>出版日</th>
+			<th>値段</th>
+			<th>更新</th>
+			<th>削除</th>
+		</tr>
+
+		<tr th:each="book : ${books}" th:object="${book}">
+			<td th:text="*{id}"></td>
+			<td th:text="*{title}"></td>
+			<td th:text="*{author}"></td>
+			<td th:text="*{publishDate}"></td>
+			<td th:text="*{price}"></td>
+			<td>
+				<form th:action="@{'/update/' + *{id}}" th:method="get">
+					<input type="submit" value="更新">
+				</form>
+			</td>
+			<td>
+				<form th:action="@{'/delete/' + *{id}}" th:method="delete">
+					<input type="submit" value="削除">
+				</form>
+			</td>
+		</tr>
+	</table>
+
+	<h3 th:if="${#arrays.isEmpty(books)}">データがありません</h3>
+
+
+</body>
+</html>
