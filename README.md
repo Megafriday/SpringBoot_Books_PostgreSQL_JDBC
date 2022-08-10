@@ -2,7 +2,7 @@
 BooksのPostgreSQL版
 
 # URL
-https://books-postgresql.herokuapp.com/  にアクセス
+https://books-postgresql.herokuapp.com/  にアクセス  
 http://localhost:8080/  にアクセス
 
 # JdbcTemplateのまとめ
